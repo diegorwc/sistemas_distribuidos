@@ -1,15 +1,9 @@
 import socket
 import re
-import configparser
 import sys
 
-config = configparser.ConfigParser()
-config.read('./config.ini')
-
-print(config[sys.argv[1]]['port'])
 host = '127.0.0.1'
-port = int(config[sys.argv[1]]['port'])
-
+port = 80
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 server_socket.bind((host, port)) 
 server_socket.listen() 
@@ -31,7 +25,7 @@ while True:
     if (user is not None and pw is not None):
         if (user.group(1) == 'diego' and pw.group(1) == 'alo'): 
             print('Logged in')
-            response = "HTTP/1.1 200 OK\n\nHello World"                                                    
+            response = "HTTP/1.1 200 OK\n\nOK"                                                    
     print(response)    
     try:
         s.send(response.encode())      
